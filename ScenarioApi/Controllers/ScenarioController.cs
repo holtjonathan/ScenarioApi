@@ -21,6 +21,7 @@ namespace ScenarioApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Scenarios>>> GetScenarios()
         {
+            //some comment
             var test = (from s in _context.Scenarios
                         select new
                         {
