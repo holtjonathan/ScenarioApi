@@ -14,7 +14,7 @@ namespace ScenarioApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "Did", "I", "Change?" , "again?"};
+            return new string[] { "Did", "I", "Change?" , "again?", "yepyepyep"};
         }
 
         // GET api/values/5
