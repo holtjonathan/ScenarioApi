@@ -15,12 +15,12 @@ namespace ScenarioApi
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; private set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ScenarioContext>(opt => opt.UseSqlServer("Server=tcp:hate.database.windows.net,1433;Initial Catalog=Scenario;Persist Security Info=False;User ID=adminlogin;Password=Spears00;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
+            services.AddDbContext<ScenarioContext>(opt => opt.UseSqlServer(Configuration["connectionStrings:scenarioDBConnectionString"]));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

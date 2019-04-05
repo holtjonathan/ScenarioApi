@@ -13,6 +13,7 @@ namespace ScenarioApi.Models
         public ScenarioContext(DbContextOptions<ScenarioContext> options)
             : base(options)
         {
+            Database.Migrate();
         }
 
         public virtual DbSet<Locations> Locations { get; set; }
@@ -48,6 +49,10 @@ namespace ScenarioApi.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
             });
+
+            modelBuilder.Entity<Locations>().HasData(
+                new Locations { LocationId = 5,  Name = "MigrationTest" }
+                );
 
             modelBuilder.Entity<MissionTypes>(entity =>
             {
