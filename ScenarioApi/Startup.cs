@@ -20,7 +20,18 @@ namespace ScenarioApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ScenarioContext>(opt => opt.UseSqlServer(Configuration["connectionStrings:scenarioDBConnectionString"]));
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.WithOrigins("http://localhost:3000")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials();
+            }));
+
+            //services.AddDbContext<ScenarioContext>(opt => opt.UseSqlServer(Configuration["connectionStrings:scenarioDBConnectionString"]));
+            services.AddDbContext<ScenarioContext>(opt => opt.UseSqlServer("Server = tcp:hate.database.windows.net,1433; Initial Catalog = Scenario; Persist Security Info = False; User ID = adminlogin; Password = Spears00; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;"));
+
+            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -37,6 +48,7 @@ namespace ScenarioApi
                 app.UseHsts();
             }
 
+            app.UseCors("MyPolicy");
             app.UseHttpsRedirection();
             app.UseMvc();
         }

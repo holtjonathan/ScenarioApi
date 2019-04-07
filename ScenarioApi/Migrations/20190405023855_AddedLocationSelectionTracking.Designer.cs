@@ -3,38 +3,23 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ScenarioApi.Models;
 
 namespace ScenarioApi.Migrations
 {
     [DbContext(typeof(ScenarioContext))]
-    partial class ScenarioContextModelSnapshot : ModelSnapshot
+    [Migration("20190405023855_AddedLocationSelectionTracking")]
+    partial class AddedLocationSelectionTracking
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.3-servicing-35854")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("ScenarioApi.Models.LocationSelectionTracking", b =>
-                {
-                    b.Property<int>("LocationSelectionTrackingId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("PlayerId")
-                        .IsUnicode(false);
-
-                    b.Property<int>("ScenarioId")
-                        .IsUnicode(false);
-
-                    b.HasKey("LocationSelectionTrackingId");
-
-                    b.ToTable("LocationSelectionTracking");
-                });
 
             modelBuilder.Entity("ScenarioApi.Models.Locations", b =>
                 {
@@ -50,6 +35,13 @@ namespace ScenarioApi.Migrations
                     b.HasKey("LocationId");
 
                     b.ToTable("Locations");
+
+                    b.HasData(
+                        new
+                        {
+                            LocationId = 5,
+                            Name = "MigrationTest"
+                        });
                 });
 
             modelBuilder.Entity("ScenarioApi.Models.MissionTypes", b =>

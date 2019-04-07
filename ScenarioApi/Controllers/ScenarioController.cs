@@ -23,12 +23,14 @@ namespace ScenarioApi.Controllers
         {
             //some comment
             var test = (from s in _context.Scenarios
+                        join l in _context.Locations on s.LocationId equals l.LocationId
                         select new
                         {
                             s.ScenarioId,
                             s.Name,
                             s.Slug,
-                            s.Description
+                            s.Description,
+                            LocationName = l.Name
                         });
 
             return Ok(test);

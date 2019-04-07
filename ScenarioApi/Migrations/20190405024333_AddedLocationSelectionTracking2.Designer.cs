@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ScenarioApi.Models;
 
 namespace ScenarioApi.Migrations
 {
     [DbContext(typeof(ScenarioContext))]
-    partial class ScenarioContextModelSnapshot : ModelSnapshot
+    [Migration("20190405024333_AddedLocationSelectionTracking2")]
+    partial class AddedLocationSelectionTracking2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
