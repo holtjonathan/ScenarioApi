@@ -17,10 +17,11 @@ namespace ScenarioApi.Controllers
             _context = context;
         }
 
-        [HttpGet()]
-        public async Task<ActionResult<IEnumerable<Scenarios>>> GetSpecialRules()
+        [HttpGet("{scenarioId}")]
+        public async Task<ActionResult<IEnumerable<Scenarios>>> GetSpecialRules(int scenarioId)
         {
             var test = (from sr in _context.SpecialRules
+                        where sr.ScenarioId == scenarioId
                         select sr);
 
             return Ok(test);
