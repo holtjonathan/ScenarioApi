@@ -6,6 +6,7 @@ namespace ScenarioApi.Models
     public partial class Missions
     {
         public int MissionId { get; set; }
+        public string MissionName { get; set; }
         public int ScenarioId { get; set; }
         public int TypeId { get; set; }
         public string Description { get; set; }

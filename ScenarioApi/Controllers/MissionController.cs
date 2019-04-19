@@ -36,6 +36,7 @@ namespace ScenarioApi.Controllers
                                   select new MissionReturn
                                   {
                                       MissionId = m.MissionId,
+                                      MissionName = m.MissionName,
                                       MissionDescription = m.Description,
                                       MissionTypeName = mt.Name,
                                       RewardDescription = r.Description,

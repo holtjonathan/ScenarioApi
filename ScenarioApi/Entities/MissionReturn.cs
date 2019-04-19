@@ -3,6 +3,7 @@
     public class MissionReturn
     {
         public int MissionId { get; set; }
+        public string MissionName { get; set; }
         public string MissionDescription { get; set; }
         public string MissionTypeName { get; set; }
         public string RewardDescription { get; set; }
